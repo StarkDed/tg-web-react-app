@@ -1,5 +1,6 @@
 import { useTelegram } from "../../hooks/useTelegram.js";
 import Button from "../Button/Button.jsx";
+import "./Header.css";
 
 const Header = () => {
   const { user, onClose } = useTelegram();
