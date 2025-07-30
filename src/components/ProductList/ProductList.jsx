@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTelegram } from "../../hooks/useTelegram";
 import ProductItem from "../ProductItem/ProductItem";
 import "./ProductList.css";
@@ -57,22 +57,27 @@ const ProductList = () => {
     setAddedItems(newItems);
 
     if (newItems.length === 0) {
-      tg.MainButton.hife();
+      tg.MainButton.hide();
     } else {
       tg.MainButton.show();
       tg.MainButton.setParams({ text: `Купить ${getTotalPrice(newItems)}` });
     }
   };
 
+  useEffect(() => {
+    console.log(products);
+  }, []);
+
   return (
     <div className={"list"}>
-      {products.map((item) => {
+      {products.map((item) => (
         <ProductItem
           product={item}
           onAdd={onAdd}
           className={"item"}
-        ></ProductItem>;
-      })}
+          key={item.id}
+        />
+      ))}
     </div>
   );
 };
